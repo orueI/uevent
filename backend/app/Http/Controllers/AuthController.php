@@ -34,16 +34,12 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-
         $user = User::create([
             'login' => $request->get('login'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
-            'fullName' => $request->get('fullName')
         ]);
-
-        $token = JWTAuth::fromUser($user);
-        return response()->json(compact('user', 'token'),201);
+        return response()->json(compact('user'),201);
     }
 
     public function getAuthenticatedUser()
