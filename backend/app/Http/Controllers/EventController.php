@@ -14,7 +14,7 @@ class EventController extends Controller
 
     public function getEventById($id) {
         if(!Event::find($id))
-            return response(["error" => "User not found"], 404);
+            return response(["error" => "Event not found"], 404);
         return Event::find($id);
     }
 }
