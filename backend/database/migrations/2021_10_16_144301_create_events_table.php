@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Company;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -21,6 +22,7 @@ class CreateEventsTable extends Migration
             $table->unsignedInteger("tickets");
             $table->unsignedDecimal("price");
             $table->foreignIdFor(Company::class);
+            $table->foreignIdFor(Category::class);
             $table->timestamp("startTime");
             $table->timestamps();
         });
