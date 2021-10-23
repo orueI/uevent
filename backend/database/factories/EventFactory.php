@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -29,7 +30,8 @@ class EventFactory extends Factory
             'tickets' => $this->faker->randomDigit(),
             'price' => $this->faker->numerify('###.##'),
             'startTime' => $this->faker->date(),
-            'company_id' => Company::all()->random()->id
+            'company_id' => Company::all()->random()->id,
+            'category_id' => Category::all()->random()->id
         ];
     }
 }

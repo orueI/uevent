@@ -24,18 +24,16 @@ Route::prefix("/auth")->group(function() {
     Route::post("/password_reset/{confirm_token}",[AuthController::class, 'changePassword']);
 });
 
-Route::get("/events", [EventController::class, 'getEvents']);
 Route::prefix("/events")->group(function() {
+    Route::get("", [EventController::class, 'getEvents']);
     Route::get("/{id}", [EventController::class, 'getEventById']);
 });
 
-Route::get("/companies", [CompanyController::class, 'getCompanies']);
-Route::post("/companies", [CompanyController::class, 'createCompany']);
-//
-
 Route::prefix("/companies")->group(function() {
+    Route::get("", [CompanyController::class, 'getCompanies']);
     Route::get("/{id}", [CompanyController::class, 'getCompanyById']);
     Route::post("", [CompanyController::class, 'create']);
     Route::delete("/{id}", [CompanyController::class, 'delete']);
+    Route::patch("/{id}",  [CompanyController::class, 'update']);
 });
 

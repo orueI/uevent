@@ -45,22 +45,21 @@ class AuthController extends Controller
     public static function getAuthenticatedUser()
     {
         try {
-
             if (!$user = JWTAuth::parseToken()->authenticate()) {
-                return false;
+                return response()->json(['user_not_found'], 404);
             }
         }
 
         catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['token_expired'], 403);
+            return response()->json(['token_expired'], $e->getStatusCode());
         }
 
         catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(['token_invalid'], 401);
+            return response()->json(['token_invalid'], $e->getStatusCode());
         }
 
-        catch (JWTException $e) {
-            return response()->json(['token_absent'], 404);
+        catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['token_absent'], $e->getStatusCode());
         }
 
         return response()->json($user);
@@ -68,10 +67,7 @@ class AuthController extends Controller
 
     public static function isLogged(): bool
     {
-        if(self::getAuthenticatedUser() == null)
-            return false;
 
-        return true;
     }
 
     public function logout()
