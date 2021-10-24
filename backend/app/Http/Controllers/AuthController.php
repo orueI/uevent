@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Mail\ResetPassEmail;
 use App\Models\PasswordResets;
 use Illuminate\Http\Request;
@@ -32,12 +33,13 @@ class AuthController extends Controller
         return response()->json(compact('token'));
     }
 
-    public function register(Request $request)
+    public function register(CreateUserRequest $request)
     {
+        $validated = $request->validated();
         $user = User::create([
-            'login' => $request->get('login'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')),
+            'login' => $validated['login'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
         ]);
         return response()->json(compact('user'),201);
     }

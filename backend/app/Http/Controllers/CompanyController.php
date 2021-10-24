@@ -14,9 +14,9 @@ class CompanyController extends Controller
     }
 
     public function getCompanyById($id) {
-        if(!Company::find($id))
+        if(!$company = Company::find($id))
             return response(["error" => "Company not found"], 404);
-        return Company::find($id);
+        return $company;
     }
 
     public function create(CreateCompanyRequest $request) {
