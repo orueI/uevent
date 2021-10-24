@@ -69,7 +69,10 @@ class AuthController extends Controller
 
     public static function isLogged(): bool
     {
-
+        if($user = self::getAuthenticatedUser()) {
+            return true;
+        }
+        return false;
     }
 
     public function logout()
