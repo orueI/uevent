@@ -20,6 +20,8 @@ class CreateSubscribedUsersTable extends Migration
             $table->foreignIdFor(Event::class);
             $table->foreignIdFor(User::class);
             $table->boolean("notify");
+            $table->unique(['event_id', 'user_id']);
+            $table->boolean("showUser");
             $table->timestamps();
         });
     }

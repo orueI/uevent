@@ -24,6 +24,7 @@ class CreateEventsTable extends Migration
             $table->foreignIdFor(Company::class);
             $table->foreignIdFor(Category::class);
             $table->timestamp("startTime");
+            $table->boolean("showEventVisitors")->default(1);
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SubscribedUsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,3 +44,7 @@ Route::prefix("/categories")->group(function() {
     Route::get("/{id}", [CategoryController::class, 'getCategoryById']);
 });
 
+Route::prefix("/subscribed")->group(function() {
+    Route::get("/{eventId}", [SubscribedUsersController::class, 'getSubscribedOnEventUsers']);
+    Route::post("/{eventId}", [SubscribedUsersController::class, 'subscribeToEvent']);
+});

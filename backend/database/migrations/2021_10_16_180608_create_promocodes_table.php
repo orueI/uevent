@@ -18,7 +18,7 @@ class CreatePromocodesTable extends Migration
             $table->id();
             $table->string("code");
             $table->foreignIdFor(Event::class);
-            $table->unique("code", "event_id");
+            $table->unique(["code", "event_id"]);
             $table->tinyInteger("percent");
             $table->timestamps();
         });
