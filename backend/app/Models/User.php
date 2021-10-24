@@ -11,6 +11,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
 }

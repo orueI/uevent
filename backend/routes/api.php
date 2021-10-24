@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
@@ -35,5 +36,10 @@ Route::prefix("/companies")->group(function() {
     Route::post("", [CompanyController::class, 'create']);
     Route::delete("/{id}", [CompanyController::class, 'delete']);
     Route::patch("/{id}",  [CompanyController::class, 'update']);
+});
+
+Route::prefix("/categories")->group(function() {
+    Route::get("", [CategoryController::class, 'getCategories']);
+    Route::get("/{id}", [CategoryController::class, 'getCategoryById']);
 });
 
