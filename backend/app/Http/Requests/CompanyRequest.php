@@ -26,7 +26,10 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'title' => 'required|unique:companies|max:255',
+            'location' => 'required|max:255',
+            'description' => 'required|max:255',
+            'email' => 'required|max:255|email|unique:companies'
         ];
     }
 
