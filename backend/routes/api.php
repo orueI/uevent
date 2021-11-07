@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PromocodeController;
+use App\Http\Controllers\SubscribedUsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +30,9 @@ Route::prefix("/auth")->group(function() {
 Route::prefix("/events")->group(function() {
     Route::get("", [EventController::class, 'getEvents']);
     Route::get("/{id}", [EventController::class, 'getEventById']);
+    Route::post("", [EventController::class, 'create']);
+    Route::delete("/{id}", [EventController::class, 'delete']);
+    Route::patch("/{id}", [EventController::class, 'update']);
 });
 
 Route::prefix("/companies")->group(function() {
@@ -43,3 +48,15 @@ Route::prefix("/categories")->group(function() {
     Route::get("/{id}", [CategoryController::class, 'getCategoryById']);
 });
 
+Route::prefix("/subscribed")->group(function() {
+    Route::get("/{eventId}", [SubscribedUsersController::class, 'getSubscribedOnEventUsers']);
+    Route::post("/{eventId}", [SubscribedUsersController::class, 'subscribeToEvent']);
+});
+
+Route::prefix("/promocodes")->group(function() {
+    Route::get("/event/{eventId}", [PromocodeController::class, 'getPromocodes']);
+    Route::get("/{id}", [PromocodeController::class, 'getPromocodeById']);
+    Route::post("", [PromocodeController::class, 'create']);
+    Route::delete("/{id}", [PromocodeController::class, 'delete']);
+    Route::patch("/{id}",  [PromocodeController::class, 'update']);
+});

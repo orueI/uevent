@@ -47,7 +47,7 @@ class CompanyController extends Controller
         $validated = $request->validated();
         $company = Company::find($id);
         try {
-            if (AuthController::getAuthenticatedUser()->getData()->id == $company->id) {
+            if (AuthController::getAuthenticatedUser()->getData()->id == $company->user_id) {
                 $company->update($validated);
                 return response()->json(["message" => "Success"], 200);
             }

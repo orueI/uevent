@@ -117,6 +117,17 @@
       <path value="$PROJECT_DIR$/backend/vendor/psr/log" />
       <path value="$PROJECT_DIR$/backend/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/backend/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/backend/vendor/backpack/crud" />
+      <path value="$PROJECT_DIR$/backend/vendor/prologue/alerts" />
+      <path value="$PROJECT_DIR$/backend/vendor/creativeorange/gravatar" />
+      <path value="$PROJECT_DIR$/backend/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/backend/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/backend/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/backend/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/backend/vendor/laravel-shift/blueprint" />
+      <path value="$PROJECT_DIR$/backend/vendor/laravel-shift/faker-registry" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/backend/vendor/backpack/generators" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
