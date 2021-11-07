@@ -26,6 +26,10 @@ Route::prefix("/auth")->group(function() {
     Route::post("/password_reset",[AuthController::class, 'passReset']);
     Route::post("/password_reset/{confirm_token}",[AuthController::class, 'changePassword']);
 });
+/*Route::prefix('google')->name('google.')->group( function(){
+    Route::get('login', [AuthController::class, 'loginWithGoogle'])->name('login');
+    Route::any('callback', [AuthController::class, 'callbackFromGoogle'])->name('callback');
+});*/
 
 Route::prefix("/events")->group(function() {
     Route::get("", [EventController::class, 'getEvents']);
@@ -51,6 +55,7 @@ Route::prefix("/categories")->group(function() {
 Route::prefix("/subscribed")->group(function() {
     Route::get("/{eventId}", [SubscribedUsersController::class, 'getSubscribedOnEventUsers']);
     Route::post("/{eventId}", [SubscribedUsersController::class, 'subscribeToEvent']);
+    Route::get("/isSubscribed/{event_id}", [SubscribedUsersController::class, 'getSubscribedUser']);
 });
 
 Route::prefix("/promocodes")->group(function() {

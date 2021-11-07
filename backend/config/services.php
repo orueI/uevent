@@ -29,5 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'google' => [
+        'client_id' => '', //USE FROM Google DEVELOPER ACCOUNT
+        'client_secret' => '', //USE FROM Google DEVELOPER ACCOUNT
+        'redirect' => 'https://0a41-106-212-124-50.ngrok.io/google/callback/'
+    ],
 ];

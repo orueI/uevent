@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\SubscribedUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class SubscribedUsersController extends Controller
@@ -16,6 +17,17 @@ class SubscribedUsersController extends Controller
             return SubscribedUsers::all()->where('event_id', $eventId)->where('showUser',1);
         }
         return response()->json("Bad request", 400);
+    }
+
+    public function getSubscribedUser($eventId) {
+        if($userId = AuthController::getAuthenticatedUser()->getData()->id) {
+            $subscription = SubscribedUsers::where('event_id', $eventId)->where('user_id', $userId);
+            if($subscription) {
+                return true;
+            }
+            return false;
+        }
+        return response()->json(["error" => "Not authorized"], 401);
     }
 
     public function subscribeToEvent(CreateSubscriptionRequest $request, $eventId) {

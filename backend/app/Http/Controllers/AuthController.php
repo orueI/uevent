@@ -10,6 +10,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Socialite\Facades\Socialite;
 use Tymon\JWTAuth\Validators\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -109,4 +110,5 @@ class AuthController extends Controller
         $record->delete();
         return response(['message' => 'Password successfully reset'], 200);
     }
+
 }
