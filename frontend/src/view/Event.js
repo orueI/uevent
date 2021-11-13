@@ -2,6 +2,7 @@ import {Button} from "@mui/material";
 import {useEffect, useState} from "react";
 import {isLogin} from "../repository/AuthRepository";
 import {getCompany} from "../repository/CompanyRepository";
+import {Link} from "react-router-dom";
 
 export const Event = ({event}) => {
     const [company, setCompany] = useState(null)
@@ -21,7 +22,9 @@ export const Event = ({event}) => {
             <h2>{event?.title}</h2>
             <p>{event?.description}</p>
             {company != null &&
-            <p> Company: {company?.title}</p>
+            <Link to={'/company/' + company.id}>
+                <p> Company: {company?.title}</p>
+            </Link>
             }
             <p>Price:{event?.price}$</p>
             {isLogin() &&
