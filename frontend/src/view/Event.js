@@ -16,7 +16,6 @@ export const Event = ({event}) => {
         },
         []
     )
-    // console.log(eventState)
     return (
         <div>
             <h2>{event?.title}</h2>
