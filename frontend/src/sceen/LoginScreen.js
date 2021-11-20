@@ -3,29 +3,6 @@ import React, {useState} from "react";
 import {login} from "../repository/AuthRepository";
 import {changeScreen} from "../utils/Windows";
 
-
-// const login = () => {
-//     window.location.href = ('/register')
-// }
-//
-// export const LoginScreen = () => {
-//     return (
-//         <Stack>
-//             Login
-//             <TextField
-//                 id="login"
-//                 label="Login"
-//                 variant="outlined"/>
-//             <TextField
-//                 id="password"
-//                 label="Password"
-//                 variant="outlined"
-//                 type="password"/>
-//             <Button variant="contained" onClick={login}>Text</Button>
-//         </Stack>
-//     )
-// }
-
 const test = async () => {
     const data = login("admin", "123456")
     console.log(data)
@@ -75,13 +52,13 @@ export const LoginScreen = () => {
     )
 }
 
-const onClickLogin = async (setResponse, login, password) => {
+const onClickLogin = async (setResponse, loginStr, password) => {
     if (password.length < 1)
         return alert("Password can not be void")
-    if (login.length < 1)
+    if (loginStr.length < 1)
         return alert("Login can not be void")
 
-    const loginResponse = login(login, password)
+    const loginResponse = login(loginStr, password)
     checkLoginResponse(loginResponse)
 }
 

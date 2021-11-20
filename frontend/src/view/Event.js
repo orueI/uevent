@@ -1,4 +1,4 @@
-import {Button} from "@mui/material";
+import {Button, Checkbox} from "@mui/material";
 import {useEffect, useState} from "react";
 import {isLogin} from "../repository/AuthRepository";
 import {getCompany} from "../repository/CompanyRepository";
@@ -27,11 +27,15 @@ export const Event = ({event}) => {
             }
             <p>Price:{event?.price}$</p>
             {isLogin() &&
-            <Button onClick={() => {
-                subscribe()
-            }}>
-                Subscribe
-            </Button>
+            <div>
+                <Checkbox {..."notify"} id={"isNotifyCheckbox"}/>
+                <Checkbox {..."showUser"} id={"isShowUserCheckbox"}/>
+                <Button onClick={() => {
+                    subscribe()
+                }}>
+                    Subscribe
+                </Button>
+            </div>
             }
         </div>
     )

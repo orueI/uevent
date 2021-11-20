@@ -10,7 +10,8 @@ const Main = () => {
     return (
         <main>
             <Switch>
-                <Route exact path='/' component={LoginScreen}/>
+                <Route exact path='/' component={EventsScreen}/>
+                <Route exact path='/login' component={LoginScreen}/>
                 <Route exact path='/register' component={RegisterScreen}/>
                 <Route exact path='/events' component={EventsScreen}/>
                 <Route path='/company/:id' render={(props) => <CompanyScreen companyId={props.match.params.id}/>}/>

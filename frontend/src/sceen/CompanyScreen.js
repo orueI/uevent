@@ -7,9 +7,10 @@ export const CompanyScreen = ({companyId}) => {
     const [events, setEvents] = useState(null)
     const [company, setCompany] = useState(null)
     useEffect(async () => {
-        setCompany(await getCompany(companyId))
-        const {data} = await getAllEvents()
-        setEvents(data)
+        let {data} = await getCompany(companyId)
+        setCompany(data)
+        const event = await getAllEvents()
+        setEvents(event.data)
     }, [])
     return (
         <div>
