@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateSubscriptionRequest extends FormRequest

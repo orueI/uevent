@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PromocodeController;
 use App\Http\Controllers\SubscribedUsersController;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,7 @@ Route::prefix("/subscribed")->group(function() {
     Route::get("/{eventId}", [SubscribedUsersController::class, 'getSubscribedOnEventUsers']);
     Route::post("/{eventId}", [SubscribedUsersController::class, 'subscribeToEvent']);
     Route::get("/isSubscribed/{event_id}", [SubscribedUsersController::class, 'getSubscribedUser']);
+    Route::post("/{id}/buy", [PaymentController::class, 'buyTicket']);
 });
 
 Route::prefix("/promocodes")->group(function() {

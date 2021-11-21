@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSubscriptionRequest;
+use App\Mail\ResetPassEmail;
 use App\Models\Event;
 use App\Models\SubscribedUsers;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use phpDocumentor\Reflection\Types\Object_;
 
 class SubscribedUsersController extends Controller
 {
@@ -44,7 +44,9 @@ class SubscribedUsersController extends Controller
 
                 if ($validated['notify'] == 1) {
                     $user = User::find($userId);
-                    Mail::later(86400, $user['email'], 'Eveeeeeeeeeeent is comming!!!');
+                    $message = new \stdClass();
+                    $message->path = "event is coming";
+                    Mail::to($user["email"])->send(new ResetPassEmail($message));
                 }
 
                 $event->tickets -= 1;

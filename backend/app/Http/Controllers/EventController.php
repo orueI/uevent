@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateEventRequest;
 use App\Http\Requests\UpdateEventRequest;
-use App\Models\Category;
 use App\Models\Company;
 use App\Models\Event;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
