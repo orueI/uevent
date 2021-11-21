@@ -1,14 +1,15 @@
 import {Button, Checkbox} from "@mui/material";
 import {useEffect, useState} from "react";
 import {isLogin} from "../repository/AuthRepository";
+import {subscribe} from "../repository/EventRepository";
 import {getCompany} from "../repository/CompanyRepository";
 import {Link} from "react-router-dom";
 
 export const Event = ({event}) => {
     const [company, setCompany] = useState(null)
 
-    function subscribe() {
-        // TODO: 30.10.21 not yet implemented
+    async function subscribeToEvent(eventId) {
+        const response = await subscribe(eventId)
     }
 
     useEffect(async () => {
@@ -31,7 +32,7 @@ export const Event = ({event}) => {
                 <Checkbox {..."notify"} id={"isNotifyCheckbox"}/>
                 <Checkbox {..."showUser"} id={"isShowUserCheckbox"}/>
                 <Button onClick={() => {
-                    subscribe()
+                    subscribeToEvent(event?.id)
                 }}>
                     Subscribe
                 </Button>

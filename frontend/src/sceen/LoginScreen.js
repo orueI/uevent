@@ -3,14 +3,8 @@ import React, {useState} from "react";
 import {login} from "../repository/AuthRepository";
 import {changeScreen} from "../utils/Windows";
 
-const test = async () => {
-    const data = login("admin", "123456")
-    console.log(data)
-}
-
 export const LoginScreen = () => {
     const [response, setResponse] = useState([])
-    test()
     return (
         <div>
             <h2 style={{margin: "5px"}}>Login</h2>
@@ -22,7 +16,7 @@ export const LoginScreen = () => {
             </div>
             <div>
                 <Button variant="contained" color="primary" disableElevation style={{margin: "5px"}} onClick={e => {
-                    document.getElementById("editLogin").value = "admin"
+                    document.getElementById("editLogin").value = "use"
                     document.getElementById("editPassword").value = "123456"
                 }
                 }>set default data
@@ -63,8 +57,9 @@ const onClickLogin = async (setResponse, loginStr, password) => {
 }
 
 function checkLoginResponse(response) {
-    if (response.access_token === false) {
+    if (response?.access_token === false) {
         console.log("1")
     } else {
+        changeScreen("/")
     }
 }

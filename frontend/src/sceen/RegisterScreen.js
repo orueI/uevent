@@ -25,7 +25,7 @@ export const RegisterScreen = () => {
                     document.getElementById("editLogin").value = "use"
                     document.getElementById("editPassword").value = "123456"
                     document.getElementById("editFull").value = "Full name"
-                    document.getElementById("editEmail").value = "mymail@i.com"
+                    document.getElementById("editEmail").value = "mymail@gmail.com"
                 }
                 }>set default data
                 </Button>
@@ -55,7 +55,7 @@ const onClickRegister = async (setError, login, password, full, email) => {
     if (validatePassword(password))
         return alert("Incorrect password")
 
-    const {data, response} = register(login, password, full, email)
+    const {data, response} = await register(login, password, full, email)
     if (response.status === 201) {
         window.location.href = ('/login')
     }
@@ -66,11 +66,13 @@ const onClickRegister = async (setError, login, password, full, email) => {
 }
 
 function validateEmail(email) {
+    return false
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
 function validatePassword(password) {
+    return false
     if (password.length < 6)
         return false
     const re = "(\w|\d)+";

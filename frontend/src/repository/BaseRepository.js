@@ -1,8 +1,5 @@
-export const request = (request: Promise) => {
-    request
+export function processingRequest(response) {
     try {
-        const response = request()
-
         if (response?.code % 100 === 4) {
             const errors: Array = response?.errors
             errors.forEach((error) => {
