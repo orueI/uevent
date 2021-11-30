@@ -22,9 +22,8 @@ export async function create(companyName, companyEmail, companyLocation, company
             description: companyDescription
         },
         auth()
-    )
-    processingRequest(response)
-    console.log("getCompany:", response)
+    ).processingRequest()
+    console.log("create Company:", response)
     return {
         response: response,
         data: response.data

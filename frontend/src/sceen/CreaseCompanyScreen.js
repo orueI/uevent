@@ -1,10 +1,29 @@
 import {Button, TextField} from "@mui/material";
 import React from "react";
-import {create} from "../repository/CompanyRepository";
+import axios from "axios";
+import {auth} from "../utils/Request";
 
 export const CreaseCompanyScreen = () => {
     function createCompany(companyName, companyEmail, companyLocation, companyDescription) {
-        create(companyName, companyEmail, companyLocation, companyDescription)
+        // create(companyName, companyEmail, companyLocation, companyDescription)
+        const response = axios.post(
+            'http://127.0.0.1:8000/api/companies/',
+            {
+                title: companyName,
+                email: companyEmail,
+                location: companyLocation,
+                description: companyDescription
+            },
+            auth()
+        ).then((response) => {
+            console.log(response)
+            // if (response.status % 100 === 4) {
+            //
+            // }
+        }).catch((e) => {
+            console.log(e)
+            alert(e)
+        })
     }
 
     return (

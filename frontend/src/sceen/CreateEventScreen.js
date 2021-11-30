@@ -10,7 +10,9 @@ export const CreateEventScreen = ({companyId}) => {
         <div>
             <h2>Creator event</h2>
             <div>
-                <TextField id={"editCompanyName"} placeholder={"Company name"}/>
+                <TextField
+                    id={"editComp                                                                                                                                                                                                                                                                                                                                                                                                                                                    anyName"}
+                    placeholder={"Company name"}/>
             </div>
             <div>
                 <TextField id={"editCompanyName"} placeholder={"Company name"}/>

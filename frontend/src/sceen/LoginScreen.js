@@ -1,6 +1,6 @@
 import {Button, TextField} from '@mui/material';
 import React, {useState} from "react";
-import {login} from "../repository/AuthRepository";
+import {isLogin, login} from "../repository/AuthRepository";
 import {changeScreen} from "../utils/Windows";
 
 export const LoginScreen = () => {
@@ -57,9 +57,9 @@ const onClickLogin = async (setResponse, loginStr, password) => {
 }
 
 function checkLoginResponse(response) {
-    if (response?.access_token === false) {
-        console.log("1")
-    } else {
+    if (isLogin()) {
         changeScreen("/")
+    } else {
+        console.log("1")
     }
 }

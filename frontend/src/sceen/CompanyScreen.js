@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import {getAllEvents} from "../repository/EventRepository";
 import {getCompany} from "../repository/CompanyRepository";
 import {Events} from "../view/Events";
+import {changeScreen} from "../utils/Windows";
+import Button from "@mui/material/Button";
 
 export const CompanyScreen = ({companyId}) => {
     const [events, setEvents] = useState(null)
@@ -17,6 +19,7 @@ export const CompanyScreen = ({companyId}) => {
             <h1>Company name {company?.title}</h1>
             <p>Company from {company?.location}</p>
             <p>{company?.description}</p>
+            <Button onClick={changeScreen("/create/event/" + companyId)}>Create event</Button>
             {events != null &&
             (
                 <div>

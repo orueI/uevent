@@ -45,7 +45,7 @@ export function logout() {
 }
 
 export const saveToken = (response) => {
-    Cookies.set(tokenJWT, response.access_token, {expires: response.expires_in});
+    Cookies.set(tokenJWT, response.token)//, {expires: response.expires_in}); todo Need add to response expires_in
     // Cookies.set(USER_ID, response.user.id, {expires: response.expires_in});
 }
 

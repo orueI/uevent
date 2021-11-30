@@ -6,6 +6,7 @@ import {Header} from "./view/Header";
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 import {EventsScreen} from "./sceen/EventsScreen";
 import {CreaseCompanyScreen} from "./sceen/CreaseCompanyScreen";
+import {CreateEventScreen} from "./sceen/CreateEventScreen";
 
 const Main = () => {
     return (
@@ -17,8 +18,9 @@ const Main = () => {
                 <Route exact path='/events' component={EventsScreen}/>
 
                 <Route exact path='/create/company' component={CreaseCompanyScreen}/>
-                {/*<Route path='/create/event/:id' render={(props) => <CreateEventScreen companyId={props.match.params.id}/>}/>*/}
-                <Route exact path='/create/event' component={CreaseCompanyScreen}/>
+                <Route
+                    path='/create/event/:id'
+                    render={(props) => CreateEventScreen(props)}/>
                 <Route exact path='/create/promo_code' component={CreaseCompanyScreen}/>
 
                 <Route path='/company/:id' render={(props) => <CompanyScreen companyId={props.match.params.id}/>}/>
