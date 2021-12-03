@@ -2,10 +2,10 @@ import {Button, TextField} from "@mui/material";
 import React from "react";
 import axios from "axios";
 import {auth} from "../utils/Request";
+import {changeScreen} from "../utils/Windows";
 
 export const CreaseCompanyScreen = () => {
     function createCompany(companyName, companyEmail, companyLocation, companyDescription) {
-        // create(companyName, companyEmail, companyLocation, companyDescription)
         const response = axios.post(
             'http://127.0.0.1:8000/api/companies/',
             {
@@ -17,9 +17,7 @@ export const CreaseCompanyScreen = () => {
             auth()
         ).then((response) => {
             console.log(response)
-            // if (response.status % 100 === 4) {
-            //
-            // }
+            changeScreen("/")
         }).catch((e) => {
             console.log(e)
             alert(e)
