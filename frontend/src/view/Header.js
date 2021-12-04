@@ -46,7 +46,7 @@ export const Header = () => (
             {isLogin() &&
             <Button variant="contained" color="primary" disableElevation style={{margin: "5px"}}
                     onClick={e => doLogout()}>
-                <Link className={"li"} to='/logout'>Log out</Link>
+                <Link className={"li"} to='/'>Log out</Link>
             </Button>
             }
 

@@ -53,10 +53,12 @@ const onClickLogin = async (setResponse, loginStr, password) => {
         return alert("Login can not be void")
 
     const loginResponse = login(loginStr, password)
-    checkLoginResponse(loginResponse)
+    setTimeout(() => {
+        checkLoginResponse(loginResponse)
+    }, 200)
 }
 
-function checkLoginResponse(response) {
+async function checkLoginResponse(response) {
     if (isLogin()) {
         changeScreen("/")
     } else {

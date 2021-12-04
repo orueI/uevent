@@ -2,6 +2,7 @@ import axios from "axios";
 import baseUrl from "../const";
 import Cookies from 'js-cookie'
 import {processingRequest} from "./BaseRepository";
+import jwt_decode from "jwt-decode";
 
 const tokenJWT = "TOKEN_JWT"
 const USER_ID = "USER_ID"
@@ -46,7 +47,9 @@ export function logout() {
 
 export const saveToken = (response) => {
     Cookies.set(tokenJWT, response.token)//, {expires: response.expires_in}); todo Need add to response expires_in
-    Cookies.set(USER_ID, response.user.id)//, {expires: response.expires_in});
+    const user = jwt_decode(response.token)
+    console.log(user)
+    Cookies.set(USER_ID, user.sub)//, {expires: response.expires_in});
 }
 
 export function getToken() {
@@ -63,5 +66,5 @@ export const rmToken = () => {
 }
 
 export const isLogin = () => {
-    return Cookies.get(tokenJWT) != null
+    return Cookies.get(tokenJWT) != null && Cookies.get(USER_ID) != null
 }
