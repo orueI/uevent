@@ -8,7 +8,6 @@ use App\Models\Event;
 use App\Models\SubscribedUsers;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
-use phpDocumentor\Reflection\Types\Object_;
 
 class SubscribedUsersController extends Controller
 {
@@ -21,13 +20,13 @@ class SubscribedUsersController extends Controller
 
     public function getSubscribedUser($eventId) {
         if($userId = AuthController::getAuthenticatedUser()->getData()->id) {
-            $subscription = SubscribedUsers::where('event_id', $eventId)->where('user_id', $userId);
-            if($subscription) {
+            $subscription = SubscribedUsers::where('event_id', $eventId)->where('user_id', $userId)->get();
+            if(sizeof($subscription)> 0) {
                 return true;
             }
             return false;
         }
-        return response()->json(["error" => "Not authorized"], 401);
+        return true;
     }
 
     public function subscribeToEvent(CreateSubscriptionRequest $request, $eventId) {

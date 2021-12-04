@@ -59,7 +59,7 @@ Route::prefix("/subscribed")->group(function() {
     Route::get("/{eventId}", [SubscribedUsersController::class, 'getSubscribedOnEventUsers']);
     Route::post("/{eventId}", [SubscribedUsersController::class, 'subscribeToEvent']);
     Route::get("/isSubscribed/{event_id}", [SubscribedUsersController::class, 'getSubscribedUser']);
-    Route::post("/{id}/buy", [PaymentController::class, 'buyTicket']);
+    Route::post("/{eventId}/buy", [PaymentController::class, 'buyTicket']);
 });
 
 Route::prefix("/promocodes")->group(function() {

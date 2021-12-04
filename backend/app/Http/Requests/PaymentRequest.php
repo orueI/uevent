@@ -24,9 +24,11 @@ class PaymentRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required|unique:companies|min:16|max:16',
+            'number' => 'required|min:6666666666666666|max:6666666666666666|numeric',
             'expiration_date' => 'required|max:10',
-            'cvv' => 'required|min:3|max:3',
+            'cvv' => 'required|min:666|max:666|numeric',
+            'notify' => 'required',
+            'showUser' => 'required'
         ];
     }
 }
