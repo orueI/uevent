@@ -25,7 +25,6 @@ export async function subscribe(eventId) {
         },
         auth()
     )
-    processingRequest(response)
     console.log("subscribe:", response)
     return response
 }

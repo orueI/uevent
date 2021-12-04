@@ -1,9 +1,25 @@
 import {Button, TextField} from "@mui/material";
 import React from "react";
+import {changeScreen} from "../utils/Windows";
+import axios from "axios";
+import {auth} from "../utils/Request";
 
 export const BuyEventScreen = ({eventId}) => {
     async function use() {
-        // todo not implemented
+        const response = await axios.post(
+            'http://127.0.0.1:8000/api/subscribed/' + eventId,
+            {
+                notify: 1,
+                showUser: 1
+            },
+            auth()
+        ).then((response) => {
+            console.log(response)
+            changeScreen("/")
+        }).catch((e) => {
+            console.log(e)
+            alert(e)
+        })
     }
 
     return (
@@ -22,7 +38,7 @@ export const BuyEventScreen = ({eventId}) => {
                 <TextField id={"editPromoCode"} placeholder={"Promo code"}/>
             </div>
             <div>
-                <Button variant="contained" color="primary" disableElevation style={{margin: "5px"}} onClick={e =>
+                <Button variant="contained" color="primary" disableElevation style={{margin: "5px"}} onClick={() =>
                     use(
                         [
                             document.getElementById("editCardNum").value,

@@ -19,7 +19,7 @@ export const CompanyScreen = ({companyId}) => {
             <h1>Company name {company?.title}</h1>
             <p>Company from {company?.location}</p>
             <p>{company?.description}</p>
-            <Button onClick={changeScreen("/create/event/" + companyId)}>Create event</Button>
+            <Button onClick={() => changeScreen("/create/event/" + companyId)}>Create event</Button>
             {events != null &&
             (
                 <div>
