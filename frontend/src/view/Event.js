@@ -5,9 +5,11 @@ import {subscribe} from "../repository/EventRepository";
 import {getCompany} from "../repository/CompanyRepository";
 import {Link} from "react-router-dom";
 import {changeScreen} from "../utils/Windows";
+import axios from "axios";
 
 export const Event = ({event}) => {
     const [company, setCompany] = useState(null)
+    const [category, setCategory] = useState(null)
 
     async function subscribeToEvent(eventId) {
         if (event.price <= 0) {
@@ -19,6 +21,8 @@ export const Event = ({event}) => {
 
     useEffect(async () => {
             setCompany((await getCompany(event.company_id)).data)
+            setCategory((await axios.get('http://127.0.0.1:8000/api/categories/' + event.category_id)).data)
+            console.log(category)
         },
         []
     )
@@ -27,19 +31,24 @@ export const Event = ({event}) => {
             <h2>{event?.title}</h2>
             <p>{event?.description}</p>
             {company != null &&
-                <Link to={'/company/' + company.id}>
-                    <p> Company: {company?.title}</p>
-                </Link>
+            <Link to={'/company/' + company.id}>
+                <p> Company: {company?.title}</p>
+            </Link>
+            }
+            {category != null &&
+            <Link to={'/events/category/' + category.id}>
+                <p> Category: {category?.title}</p>
+            </Link>
             }
             <p>Price:{event?.price}$</p>
             {isLogin() &&
-                <div>
-                    <Checkbox {..."notify"} id={"isNotifyCheckbox"}/>
-                    <Checkbox {..."showUser"} id={"isShowUserCheckbox"}/>
-                    <Button onClick={() => {
-                        subscribeToEvent(event?.id)
-                    }}>
-                        Subscribe
+            <div>
+                <Checkbox {..."notify"} id={"isNotifyCheckbox"}/>
+                <Checkbox {..."showUser"} id={"isShowUserCheckbox"}/>
+                <Button onClick={() => {
+                    subscribeToEvent(event?.id)
+                }}>
+                    Subscribe
                     </Button>
                 </div>
             }

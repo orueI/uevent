@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
-import {getAllEvents} from "../repository/EventRepository";
 import {getCompany} from "../repository/CompanyRepository";
 import {Events} from "../view/Events";
 import {changeScreen} from "../utils/Windows";
 import Button from "@mui/material/Button";
+import axios from "axios";
 
 export const CompanyScreen = ({companyId}) => {
     const [events, setEvents] = useState(null)
@@ -11,7 +11,7 @@ export const CompanyScreen = ({companyId}) => {
     useEffect(async () => {
         let {data} = await getCompany(companyId)
         setCompany(data)
-        const event = await getAllEvents()
+        const event = await axios.get('http://127.0.0.1:8000/api/events/company/' + companyId)
         setEvents(event.data)
     }, [])
     return (

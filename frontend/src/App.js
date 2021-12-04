@@ -9,6 +9,7 @@ import {CreateEventScreen} from "./sceen/CreateEventScreen";
 import {BuyEventScreen} from "./sceen/BuyEventScreen";
 import {Header} from "./view/Header";
 import {CreatePromoCodeScreen} from "./sceen/CreatePromoCodeScreen";
+import {CategoryEventsScreen} from "./sceen/CategoryEventsScreen";
 
 const Main = () => {
     return (
@@ -18,6 +19,8 @@ const Main = () => {
                 <Route exact path='/login' component={LoginScreen}/>
                 <Route exact path='/register' component={RegisterScreen}/>
                 <Route exact path='/events' component={EventsScreen}/>
+                <Route exact path='/events/category/:categoryId'
+                       render={(props) => <CategoryEventsScreen categoryId={props.match.params.categoryId}/>}/>
 
                 <Route exact path='/create/company' component={CreaseCompanyScreen}/>
                 <Route path='/create/event/:id' render={(props) => CreateEventScreen(props)}/>
