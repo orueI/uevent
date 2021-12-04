@@ -14,8 +14,8 @@ use Facade\FlareClient\Http\Exceptions\BadResponse;
 class PaymentController extends Controller
 {
     public function buyTicket(PaymentRequest $request, $eventId) {
-        if($userId = AuthController::getAuthenticatedUser()->getData()->id) {
-            $validated = $request->validated();
+        $userId = AuthController::getAuthenticatedUser()->getData()->id;
+        $validated = $request->validated();
             if($event = Event::find($eventId)) {
                 if($event->tickets > 0) {
                     $subscription = SubscribedUsers::create([
@@ -37,9 +37,7 @@ class PaymentController extends Controller
                     return response()->json($subscription, 201);
                 }
             }
-        }
-
-        return response()->json("Forbidden", 403);
+            return response()->json("Bad request", 400);
 
     }
 }
