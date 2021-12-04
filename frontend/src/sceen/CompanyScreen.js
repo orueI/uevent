@@ -4,6 +4,7 @@ import {Events} from "../view/Events";
 import {changeScreen} from "../utils/Windows";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import {getAuthUserId, isLogin} from "../repository/AuthRepository";
 
 export const CompanyScreen = ({companyId}) => {
     const [events, setEvents] = useState(null)
@@ -19,7 +20,11 @@ export const CompanyScreen = ({companyId}) => {
             <h1>Company name {company?.title}</h1>
             <p>Company from {company?.location}</p>
             <p>{company?.description}</p>
-            <Button onClick={() => changeScreen("/create/event/" + companyId)}>Create event</Button>
+            {isLogin() && company.user_id === getAuthUserId() &&
+            (
+                <Button onClick={() => changeScreen("/create/event/" + companyId)}>Create event</Button>
+            )
+            }
             {events != null &&
             (
                 <div>

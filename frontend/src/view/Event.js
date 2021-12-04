@@ -10,6 +10,7 @@ import axios from "axios";
 export const Event = ({event}) => {
     const [company, setCompany] = useState(null)
     const [category, setCategory] = useState(null)
+    const [isSubscribed, setIsSubscribed] = useState(false)
 
     async function subscribeToEvent(eventId) {
         if (event.price <= 0) {
@@ -22,6 +23,7 @@ export const Event = ({event}) => {
     useEffect(async () => {
             setCompany((await getCompany(event.company_id)).data)
             setCategory((await axios.get('http://127.0.0.1:8000/api/categories/' + event.category_id)).data)
+            setIsSubscribed((await axios.get('http://127.0.0.1:8000/api/isSubscribed/' + event.id)).data)
             console.log(category)
         },
         []
@@ -41,16 +43,16 @@ export const Event = ({event}) => {
             </Link>
             }
             <p>Price:{event?.price}$</p>
-            {isLogin() &&
+            {isLogin() && !isSubscribed &&
             <div>
-                <Checkbox {..."notify"} id={"isNotifyCheckbox"}/>
-                <Checkbox {..."showUser"} id={"isShowUserCheckbox"}/>
+                <Checkbox {..."notify"} id={"isNotifyCheckbox"} aria-label={"isNotify"}/>
+                <Checkbox {..."showUser"} id={"isShowUserCheckbox"} aria-label={"showUser"}/>
                 <Button onClick={() => {
                     subscribeToEvent(event?.id)
                 }}>
                     Subscribe
-                    </Button>
-                </div>
+                </Button>
+            </div>
             }
         </div>
     )

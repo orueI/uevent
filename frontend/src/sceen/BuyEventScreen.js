@@ -5,12 +5,16 @@ import axios from "axios";
 import {auth} from "../utils/Request";
 
 export const BuyEventScreen = ({eventId}) => {
-    async function use() {
+    async function use(arr) {
         const response = await axios.post(
-            'http://127.0.0.1:8000/api/subscribed/' + eventId,
+            'http://127.0.0.1:8000/api/subscribed/' + eventId + "/buy",
             {
+                number: arr[0],
+                expiration_date: arr[1],
+                cvv: arr[2],
+                event_id: eventId,
                 notify: 1,
-                showUser: 1
+                showUser: 1,
             },
             auth()
         ).then((response) => {

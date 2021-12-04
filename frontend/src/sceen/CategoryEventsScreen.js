@@ -16,7 +16,7 @@ export const CategoryEventsScreen = ({categoryId}) => {
             {events != null &&
             (
                 <div>
-                    <h2>Company's events</h2>
+                    <h2>Category's events</h2>
                     <Events events={events}/>
                 </div>
             )
