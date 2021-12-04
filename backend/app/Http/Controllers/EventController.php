@@ -19,6 +19,14 @@ class EventController extends Controller
         return Event::find($id);
     }
 
+    public function getEventsByCompanyId($companyId) {
+        return Event::where('company_id', $companyId)->get();
+    }
+
+    public function getEventsByCategoryId($categoryId) {
+        return Event::where('category_id', $categoryId)->get();
+    }
+
     public function create(CreateEventRequest $request) {
         $validated = $request->validated();
         $userId = AuthController::getAuthenticatedUser()->getData()->id;

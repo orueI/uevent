@@ -6,12 +6,9 @@ use App\Http\Requests\CreateUserRequest;
 use App\Mail\ResetPassEmail;
 use App\Models\PasswordResets;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Laravel\Socialite\Facades\Socialite;
-use Tymon\JWTAuth\Validators\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Models\User;
@@ -54,15 +51,15 @@ class AuthController extends Controller
         }
 
         catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['token_expired'], $e->getStatusCode());
+            return response()->json(['token_expired'], 401);
         }
 
         catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(['token_invalid'], $e->getStatusCode());
+            return response()->json(['token_invalid'], 401);
         }
 
         catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return response()->json(['token_absent'], $e->getStatusCode());
+            return response()->json(['token_absent'], 401);
         }
 
         return response()->json($user);

@@ -35,6 +35,8 @@ Route::prefix("/auth")->group(function() {
 Route::prefix("/events")->group(function() {
     Route::get("", [EventController::class, 'getEvents']);
     Route::get("/{id}", [EventController::class, 'getEventById']);
+    Route::get("/company/{id}", [EventController::class, 'getEventsByCompanyId']);
+    Route::get("/category/{id}", [EventController::class, 'getEventsByCategoryId']);
     Route::post("", [EventController::class, 'create']);
     Route::delete("/{id}", [EventController::class, 'delete']);
     Route::patch("/{id}", [EventController::class, 'update']);
