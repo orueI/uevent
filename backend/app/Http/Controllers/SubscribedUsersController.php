@@ -45,7 +45,7 @@ class SubscribedUsersController extends Controller
                     $user = User::find($userId);
                     $message = new \stdClass();
                     $message->path = "event is coming";
-                    Mail::to($user["email"])->send(new ResetPassEmail($message));
+//                     Mail::to($user["email"])->send(new ResetPassEmail($message));
                 }
 
                 $event->tickets -= 1;

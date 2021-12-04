@@ -50,11 +50,11 @@ export const Header = () => (
             </Button>
             }
 
-            {isLogin() &&
-            <Button variant="contained" color="primary" disableElevation style={{margin: "5px"}}>
-                <Link className={"li"} to='/profile'>Profile</Link>
-            </Button>
-            }
+            {/*{isLogin() &&*/}
+            {/*<Button variant="contained" color="primary" disableElevation style={{margin: "5px"}}>*/}
+            {/*    <Link className={"li"} to='/profile'>Profile</Link>*/}
+            {/*</Button>*/}
+            {/*}*/}
 
             {isLogin() &&
             <Button variant="contained" color="primary" disableElevation style={{margin: "5px"}}>

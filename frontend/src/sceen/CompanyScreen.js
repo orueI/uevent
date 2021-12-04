@@ -20,7 +20,7 @@ export const CompanyScreen = ({companyId}) => {
             <h1>Company name {company?.title}</h1>
             <p>Company from {company?.location}</p>
             <p>{company?.description}</p>
-            {isLogin() && company.user_id === getAuthUserId() &&
+            {isLogin() && company?.user_id === getAuthUserId() &&
             (
                 <Button onClick={() => changeScreen("/create/event/" + companyId)}>Create event</Button>
             )

@@ -1,29 +1,24 @@
 import {Button, TextField} from "@mui/material";
 import React from "react";
 import {changeScreen} from "../utils/Windows";
-import axios from "axios";
-import {auth} from "../utils/Request";
+import {subscribe} from "../repository/EventRepository";
 
 export const BuyEventScreen = ({eventId}) => {
     async function use(arr) {
-        const response = await axios.post(
-            'http://127.0.0.1:8000/api/subscribed/' + eventId + "/buy",
-            {
-                number: arr[0],
-                expiration_date: arr[1],
-                cvv: arr[2],
-                event_id: eventId,
-                notify: 1,
-                showUser: 1,
-            },
-            auth()
-        ).then((response) => {
-            console.log(response)
-            changeScreen("/")
-        }).catch((e) => {
-            console.log(e)
-            alert(e)
-        })
+        // const arg = {
+        //     number: arr[0],
+        //     expiration_date: arr[1],
+        //     cvv: arr[2],
+        //     notify: 1,
+        //     showUser: 1,
+        // }
+        // console.log(arg)/////
+        // const response = await axios.post(
+        //     'http://127.0.0.1:8000/api/subscribed/' + eventId + "/buy",
+        //     arg,
+        //     auth()
+        await subscribe(eventId)
+        changeScreen("/")
     }
 
     return (
